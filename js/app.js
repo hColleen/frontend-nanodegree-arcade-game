@@ -10,7 +10,14 @@ var Enemy = function(x, y, speed) {
 };
 
 Enemy.prototype.update = function(dt) {
-
+	//this.speed = 1 /*+ Math.floor(Math.random() *100)*/;
+	if (this.x > 400){
+		this.speed = -(100 + Math.floor(Math.random() * 100));
+	} else if (this.x < 0){
+		this.speed = 100 + Math.floor(Math.random() * 100);
+	};
+	this.x += this.speed * dt;
+	//console.log(this.speed, this.x);
 };
 
 
@@ -39,11 +46,16 @@ Player.prototype.handleInput = function(keyPress){
 
 var allEnemies = [];
 
+var enemyYLocation = [63, 147, 230]
+
+enemyYLocation.forEach(function(locationY) {
+	enemy = new Enemy(0, locationY, 200);
+	allEnemies.push(enemy);
+});
 
 
 
-
-var player = new Player();
+var player = new Player(202, 405);
 
 
 // This listens for key presses and sends the keys to your
