@@ -10,14 +10,12 @@ var Enemy = function(x, y, speed) {
 };
 
 Enemy.prototype.update = function(dt) {
-	//this.speed = 1 /*+ Math.floor(Math.random() *100)*/;
 	if (this.x > 400){
 		this.speed = -(100 + Math.floor(Math.random() * 100));
 	} else if (this.x < 0){
 		this.speed = 100 + Math.floor(Math.random() * 100);
 	};
 	this.x += this.speed * dt;
-	//console.log(this.speed, this.x);
 };
 
 
