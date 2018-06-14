@@ -10,12 +10,25 @@ var Enemy = function(x, y, speed) {
 };
 
 Enemy.prototype.update = function(dt) {
+	//enemies move back and forth at random speeds
 	if (this.x > 400){
 		this.speed = -(100 + Math.floor(Math.random() * 100));
 	} else if (this.x < 0){
 		this.speed = 100 + Math.floor(Math.random() * 100);
 	};
 	this.x += this.speed * dt;
+	//collision checking
+	if (player.x < this.x + 50 &&
+	player.x + 50 > this. x &&
+	player.y < this.y + 50 &&
+	player.y + 50 > this.y){
+		this.speed = 0;
+		setTimeout(() => {
+			player.x = 200;
+			player.y = 400;
+			this.speed = 100 + Math.floor(Math.random() * 100);
+		}, 1000);
+	};
 };
 
 
