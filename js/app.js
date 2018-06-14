@@ -38,7 +38,24 @@ Player.prototype.render = function(){
 };
 
 Player.prototype.handleInput = function(keyPress){
-	
+	//allows player to wrap around x axis
+	if (keyPress === 'left' && this.x > 0){
+		this.x -= 100;
+	} else if (keyPress === 'left' && this.x <= 0){
+		this.x = 400;
+	};
+	if (keyPress === 'right' && this.x < 400){
+		this.x += 100;
+	} else if (keyPress === 'right' && this.x >= 400){
+		this.x = 0;
+	};
+	//prevent wrapping along y axis
+	if (keyPress === 'up' && this.y > 0){
+		this.y -= 100;
+	} 
+	if (keyPress === 'down' && this.y < 400){
+		this.y += 100;
+	};
 };
 
 
@@ -53,7 +70,7 @@ enemyYLocation.forEach(function(locationY) {
 
 
 
-var player = new Player(202, 405);
+var player = new Player(200, 400);
 
 
 // This listens for key presses and sends the keys to your
