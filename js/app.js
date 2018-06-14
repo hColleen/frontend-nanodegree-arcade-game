@@ -51,18 +51,14 @@ Player.prototype.render = function(){
 };
 
 Player.prototype.handleInput = function(keyPress){
-	//allows player to wrap around x axis
+	//move along x axis
 	if (keyPress === 'left' && this.x > 0){
 		this.x -= 100;
-	} else if (keyPress === 'left' && this.x <= 0){
-		this.x = 400;
 	};
 	if (keyPress === 'right' && this.x < 400){
 		this.x += 100;
-	} else if (keyPress === 'right' && this.x >= 400){
-		this.x = 0;
 	};
-	//prevent wrapping along y axis
+	//movement along y axis
 	if (keyPress === 'up' && this.y > 0){
 		this.y -= 100;
 	} 
