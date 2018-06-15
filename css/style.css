@@ -24,6 +24,10 @@ body {
 	animation-duration: 0.4s;
 }
 
+.modal-image{
+	float: left;
+}
+
 @keyframes animatetop{
 	from {top: -300px; opacity: 0}
 	to { top 0; opacity: 1}
