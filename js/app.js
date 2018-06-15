@@ -1,6 +1,7 @@
 //tutorial here https://www.youtube.com/watch?v=7PHhRrjgTDA and previous game created here https://www.khanacademy.org/computer-programming/dragon-and-knight/6160202051
 //note: KhanAcademy game credits also apply
 
+
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
 	this.x = x;
@@ -67,19 +68,16 @@ Player.prototype.handleInput = function(keyPress){
 	};
 };
 
+var player = new Player(200, 400);
 
 var allEnemies = [];
 
-var enemyYLocation = [63, 147, 230]
+var enemyYLocation = [50, 125, 200];
 
 enemyYLocation.forEach(function(locationY) {
 	enemy = new Enemy(0, locationY, 200);
 	allEnemies.push(enemy);
 });
-
-
-
-var player = new Player(200, 400);
 
 
 // This listens for key presses and sends the keys to your
@@ -93,4 +91,14 @@ document.addEventListener('keyup', function(e) {
     };
 
     player.handleInput(allowedKeys[e.keyCode]);
+});
+
+//Modal scripting
+var modal = document.getElementById("modal");
+var close = document.getElementsByClassName("close")[0];
+var modalText = document.getElementsByClassName("modal-text")[0];
+
+//onload modal
+$(document).ready(function () {
+	$('.modal').modal('show');
 });
