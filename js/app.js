@@ -2,6 +2,11 @@
 //note: KhanAcademy game credits also apply
 
 
+//onload modal
+$(document).ready(function () {
+	$('#gameStart').modal('show');
+});
+
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
 	this.x = x;
@@ -24,6 +29,7 @@ Enemy.prototype.update = function(dt) {
 	player.y < this.y + 50 &&
 	player.y + 50 > this.y){
 		this.speed = 0;
+		$("#caughtModal").modal('show');
 		setTimeout(() => {
 			player.x = 200;
 			player.y = 400;
@@ -91,14 +97,4 @@ document.addEventListener('keyup', function(e) {
     };
 
     player.handleInput(allowedKeys[e.keyCode]);
-});
-
-//Modal scripting
-var modal = document.getElementById("modal");
-var close = document.getElementsByClassName("close")[0];
-var modalText = document.getElementsByClassName("modal-text")[0];
-
-//onload modal
-$(document).ready(function () {
-	$('.modal').modal('show');
 });
