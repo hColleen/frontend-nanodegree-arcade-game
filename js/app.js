@@ -50,7 +50,13 @@ var Player = function(x, y){
 };
 
 Player.prototype.update = function(dt){
-	
+	if (this.y === 0){
+	$("#winModal").modal('show');
+	setTimeout(() => {
+		this.x = 200;
+		this.y = 400;
+	}, 1000);
+};
 };
 
 Player.prototype.render = function(){
@@ -84,7 +90,6 @@ enemyYLocation.forEach(function(locationY) {
 	enemy = new Enemy(0, locationY, 200);
 	allEnemies.push(enemy);
 });
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
