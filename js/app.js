@@ -1,5 +1,6 @@
 //tutorial here https://www.youtube.com/watch?v=7PHhRrjgTDA and previous game created here https://www.khanacademy.org/computer-programming/dragon-and-knight/6160202051
 //note: KhanAcademy game credits also apply
+//modal code taken from here https://getbootstrap.com/docs/4.1/components/modal/
 
 
 //onload modal
@@ -38,7 +39,6 @@ Enemy.prototype.update = function(dt) {
 	};
 };
 
-
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
@@ -52,6 +52,11 @@ var Player = function(x, y){
 Player.prototype.update = function(dt){
 	if (this.y === 0){
 	$("#winModal").modal('show');
+		enemyYLocation.push(275);
+		enemyYLocation.forEach(function(locationY) {
+	enemy = new Enemy(0, locationY, 200);
+	allEnemies.push(enemy);
+});
 	setTimeout(() => {
 		this.x = 200;
 		this.y = 400;
