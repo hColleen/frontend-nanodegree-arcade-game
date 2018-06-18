@@ -7,6 +7,8 @@ $(document).ready(function () {
 	$('#gameStart').modal('show');
 });
 
+var starCount = 0;
+
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
 	this.x = x;
@@ -30,19 +32,20 @@ Enemy.prototype.update = function(dt) {
 	player.y + 50 > this.y){
 		this.speed = 0;
 		$("#caughtModal").modal('show');
+		starCount -+ 1;
 		setTimeout(() => {
 			player.x = 200;
 			player.y = 400;
 			this.speed = 100 + Math.floor(Math.random() * 100);
-		}, 1000);
+		}, 100);
 	};
 };
-
 
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// Player trying to do her work without being caught
 var Player = function(x, y){
 	this.x = x;
 	this.y = y;
@@ -80,16 +83,61 @@ Player.prototype.handleInput = function(keyPress){
 	};
 };
 
+//create star object
+var Star = function(x, y){
+	this.x = x;
+	this.y = y;
+	this.sprite = "images/star.png";
+};
+
+Star.prototype.update = function(dt){
+	if (player.x < this.x + 50 &&
+	player.x + 50 > this. x &&
+	player.y < this.y + 50 &&
+	player.y + 50 > this.y){
+		starCount +=1;
+		this.hide();
+	};
+};
+
+Star.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+
+//create array for stars
+var allStars = [];
+
+var allStarsX = [];
+
+for (var i = 0; i < 2; i++){
+	allStarsX.push(Math.random() * 400);
+}
+
+var allStarsY = [];
+
+for (var i = 0; i < 2; i++){
+	allStarsY.push(Math.random() * 300);
+}
+
+for (var i = 0; i < allStarsX.length; i ++){
+		star = new Star(allStarsX[i], allStarsY[i]);
+		allStars.push(star);
+}
+
+//new player
 var player = new Player(200, 400);
 
+//create array for enemies
 var allEnemies = [];
 
-var enemyYLocation = [50, 125, 200];
+var enemyYLocation = [50, 125, 200, 275];
 
 enemyYLocation.forEach(function(locationY) {
 	enemy = new Enemy(0, locationY, 200);
 	allEnemies.push(enemy);
 });
+
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
