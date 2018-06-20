@@ -7,8 +7,6 @@ $(document).ready(function () {
 	$('#gameStart').modal('show');
 });
 
-var starCount = 0;
-
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
 	this.x = x;
@@ -32,7 +30,7 @@ Enemy.prototype.update = function(dt) {
 	player.y + 50 > this.y){
 		this.speed = 0;
 		$("#caughtModal").modal('show');
-		starCount -+ 1;
+		starCount -= 1;
 		setTimeout(() => {
 			player.x = 200;
 			player.y = 400;
@@ -50,16 +48,27 @@ var Player = function(x, y){
 	this.x = x;
 	this.y = y;
 	this.sprite = "images/char-cat-girl.png";
+	this.starCount = 0;
 };
 
 Player.prototype.update = function(dt){
-	if (this.y === 0){
+	/*if (this.y === 0){
 	$("#winModal").modal('show');
 	setTimeout(() => {
 		this.x = 200;
 		this.y = 400;
 	}, 1000);
+};*/
+	if ((star.x < this.x + 50 && star.x + 50 > this. x ) &&
+	(star.y < this.y + 50 && star.y + 50 > player.y)){
+		console.log("got me");
+		this.starCount ++;
+		star.y = -400;
+	};
 };
+
+Player.prototype.grab = function(Star){
+
 };
 
 Player.prototype.render = function(){
@@ -69,17 +78,17 @@ Player.prototype.render = function(){
 Player.prototype.handleInput = function(keyPress){
 	//move along x axis
 	if (keyPress === 'left' && this.x > 0){
-		this.x -= 100;
+		this.x -= 50;
 	};
 	if (keyPress === 'right' && this.x < 400){
-		this.x += 100;
+		this.x += 50;
 	};
 	//movement along y axis
 	if (keyPress === 'up' && this.y > 0){
-		this.y -= 100;
+		this.y -= 50;
 	} 
 	if (keyPress === 'down' && this.y < 400){
-		this.y += 100;
+		this.y += 50;
 	};
 };
 
@@ -91,19 +100,12 @@ var Star = function(x, y){
 };
 
 Star.prototype.update = function(dt){
-	if (player.x < this.x + 50 &&
-	player.x + 50 > this. x &&
-	player.y < this.y + 50 &&
-	player.y + 50 > this.y){
-		starCount +=1;
-		this.hide();
-	};
+
 };
 
 Star.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
-
 
 //create array for stars
 var allStars = [];
@@ -123,6 +125,8 @@ for (var i = 0; i < 2; i++){
 for (var i = 0; i < allStarsX.length; i ++){
 		star = new Star(allStarsX[i], allStarsY[i]);
 		allStars.push(star);
+		//Player.update(allStars[i]);
+		//allStars[i] -= 1;
 }
 
 //new player
@@ -131,13 +135,12 @@ var player = new Player(200, 400);
 //create array for enemies
 var allEnemies = [];
 
-var enemyYLocation = [50, 125, 200, 275];
+var enemyYLocation = [/*850, 125, 200, 275*/];
 
 enemyYLocation.forEach(function(locationY) {
 	enemy = new Enemy(0, locationY, 200);
 	allEnemies.push(enemy);
 });
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
