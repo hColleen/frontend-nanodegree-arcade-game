@@ -47,7 +47,7 @@ Enemy.prototype.render = function() {
 var Star = function(x, y){
 	this.x = x;
 	this.y = y;
-	this.sprite = "images/star.png";
+	this.sprite = "images/Star.png";
 };
 
 
