@@ -30,7 +30,7 @@ Enemy.prototype.update = function(dt) {
 	player.y + 50 > this.y){
 		this.speed = 0;
 		$("#caughtModal").modal('show');
-		player.starCount -= 1;
+		player.starCount = 0;
 		setTimeout(() => {
 			player.x = 200;
 			player.y = 400;
@@ -43,6 +43,43 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+//create star object
+var Star = function(x, y){
+	this.x = x;
+	this.y = y;
+	this.sprite = "images/star.png";
+};
+
+
+Star.prototype.update = function(dt){
+
+};
+
+Star.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+//create array for stars
+var allStars = [];
+
+var allStarsX = [];
+ 
+for (var i = 0; i < 1; i++){
+		allStarsX.push(Math.random() * 400);
+	}
+	 
+var allStarsY = [];
+	 
+for (var i = 0; i < 1; i++){
+		allStarsY.push(Math.random() * 300);
+	}
+	 
+for (var i = 0; i < allStarsX.length; i ++){
+		star = new Star(allStarsX[i], allStarsY[i]);
+		allStars.push(star);
+	}
+	
+
 // Player trying to do her work without being caught
 var Player = function(x, y){
 	this.x = x;
@@ -52,21 +89,25 @@ var Player = function(x, y){
 };
 
 Player.prototype.update = function(dt){
-		if (Star.x < this.x + 50 &&
-		Star.x + 50 > this. x  &&
-		Star.y < this.y + 50 &&
-		Star.y + 50 > this.y){
+	if ((star.x < this.x + 50 && star.x + 50 > this. x ) &&
+	(star.y < this.y + 50 && star.y + 50 > player.y)){
 		console.log("got me");
-		this.starCount +=1;
-		Star.y = -400;
+		this.starCount ++;
+		star.y = -400;
+		//allStars.pop;
+		allStarsX.push(Math.random() * 400);
+		allStarsY.push(Math.random() * 300);
+		var a = allStarsX.length -1;
+		star = new Star(allStarsX[a], allStarsY[a]);
+		allStars.push(star);
 	};
-		/*if (this.y === 0){
+		if (this.starCount === 10){
 	$("#winModal").modal('show');
 	setTimeout(() => {
 		this.x = 200;
 		this.y = 400;
 	}, 1000);
-};*/
+};
 };
 
 Player.prototype.render = function(){
@@ -93,21 +134,6 @@ Player.prototype.handleInput = function(keyPress){
 //new player
 var player = new Player(200, 400);
 
-//create star object
-var Star = function(x, y){
-	this.x = x;
-	this.y = y;
-	this.sprite = "images/star.png";
-};
-
-Star.prototype.update = function(dt){
-	player.update(allStars[i]);
-};
-
-Star.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
-
 //create array for enemies
 var allEnemies = [];
 
@@ -118,13 +144,6 @@ enemyYLocation.forEach(function(locationY) {
 	allEnemies.push(enemy);
 });
 
-//create array for stars
-var allStars = [];
-
-for (var i = 0; i < 10; i++) {
-	allStars.push(new Star(Math.floor(Math.random() * 450), Math.floor(Math.random() * 300)));
-
-}
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
