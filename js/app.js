@@ -3,9 +3,9 @@
 
 
 //onload modal
-//$(document).ready(function () {
-//	$('#gameStart').modal('show');
-//});
+$(document).ready(function () {
+	$('#gameStart').modal('show');
+});
 
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
@@ -52,7 +52,6 @@ var Star = function(x, y){
 
 
 Star.prototype.update = function(dt){
-
 };
 
 Star.prototype.render = function() {
@@ -79,7 +78,7 @@ for (var i = 0; i < allStarsX.length; i ++){
 		allStars.push(star);
 	}
 	
-
+var count;
 // Player trying to do her work without being caught
 var Player = function(x, y){
 	this.x = x;
@@ -91,10 +90,8 @@ var Player = function(x, y){
 Player.prototype.update = function(dt){
 	if ((star.x < this.x + 50 && star.x + 50 > this. x ) &&
 	(star.y < this.y + 50 && star.y + 50 > player.y)){
-		console.log("got me");
 		this.starCount ++;
 		star.y = -400;
-		//allStars.pop;
 		allStarsX.push(Math.random() * 400);
 		allStarsY.push(Math.random() * 300);
 		var a = allStarsX.length -1;
@@ -103,6 +100,7 @@ Player.prototype.update = function(dt){
 	};
 		if (this.starCount === 10){
 	$("#winModal").modal('show');
+	this.starCount = 0;
 	setTimeout(() => {
 		this.x = 200;
 		this.y = 400;
@@ -112,6 +110,8 @@ Player.prototype.update = function(dt){
 
 Player.prototype.render = function(){
 	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+			//display star count
+		$("#score").html(this.starCount);
 };
 
 Player.prototype.handleInput = function(keyPress){
@@ -143,6 +143,7 @@ enemyYLocation.forEach(function(locationY) {
 	enemy = new Enemy(Math.floor(Math.random() * 400), locationY, 200);
 	allEnemies.push(enemy);
 });
+
 
 
 // This listens for key presses and sends the keys to your
