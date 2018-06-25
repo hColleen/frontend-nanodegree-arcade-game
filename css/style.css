@@ -35,4 +35,6 @@ body {
 /*score board styling*/
 header{
 	display: block;
+	font-family: 'Geostar', cursive;
+	font-size: 2em;
 }

@@ -58,7 +58,7 @@ Star.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-//create array for stars
+//create array for stars. One star created at a time.
 var allStars = [];
 
 var allStarsX = [];
@@ -78,7 +78,6 @@ for (var i = 0; i < allStarsX.length; i ++){
 		allStars.push(star);
 	}
 	
-var count;
 // Player trying to do her work without being caught
 var Player = function(x, y){
 	this.x = x;
@@ -91,7 +90,9 @@ Player.prototype.update = function(dt){
 	if ((star.x < this.x + 50 && star.x + 50 > this. x ) &&
 	(star.y < this.y + 50 && star.y + 50 > player.y)){
 		this.starCount ++;
+		//move star off board when it's caught
 		star.y = -400;
+		//add new star once one is captured
 		allStarsX.push(Math.random() * 400);
 		allStarsY.push(Math.random() * 300);
 		var a = allStarsX.length -1;
