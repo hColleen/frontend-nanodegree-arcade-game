@@ -9,3 +9,13 @@ Use arrow keys to move the astrophysicist around the board to collect stars.  Co
 
 
 Dependencies: Bootstrap 4.1.0, JQuery 3.3.1, browser must support forEach as a function, and canvas
+
+
+===============================
+To play from download
+===============================
+
+To play in a local browser:
+Download the files from the [repository](https://github.com/hColleen/frontend-nanodegree-arcade-game) using the 'Clone/Download' button.
+
+Keep the files in one folder and open the index file in a browser.  IE/Edge is not reccomended.  Being fully offline is not reccomended, either, as Bootstrap and JQuery are delivered from a content distribution network server rather than being in the files.
