@@ -17,4 +17,6 @@ To play from download
 To play in a local browser:
 Download the files from the [repository](https://github.com/hColleen/frontend-nanodegree-arcade-game) using the 'Clone/Download' button.
 
-Keep the files in one folder and open the index file in a browser.  IE/Edge is not reccomended.  Being fully offline is not reccomended, either, as Bootstrap and JQuery are delivered from a content distribution network server rather than being in the files.
+Keep the files in one folder and open the index file in a browser.  IE/Edge is not reccomended.  Being fully offline is not reccomended, either, as Bootstrap and JQuery are delivered from a content distribution network server rather than being in the files.  Being fully offline will prevent the modal pop-ups from working correctly and may affect the score display.
+
+Game play is the same whether playing the live version or the local version.
