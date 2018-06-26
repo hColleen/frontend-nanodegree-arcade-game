@@ -11,7 +11,6 @@ Use arrow keys to move the astrophysicist around the board to collect stars.  Co
 Dependencies: Bootstrap 4.1.0, JQuery 3.3.1, browser must support forEach as a function, and canvas
 
 
-===============================
 To play from download
 ===============================
 
