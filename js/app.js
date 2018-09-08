@@ -141,7 +141,7 @@ var allEnemies = [];
 var enemyYLocation = [50, 125, 200, 275];
 
 enemyYLocation.forEach(function(locationY) {
-	enemy = new Enemy(Math.floor(Math.random() * 400), locationY, 200);
+	enemy = new Enemy((Math.floor(Math.random() * 400)), locationY, 200);
 	allEnemies.push(enemy);
 });
 
