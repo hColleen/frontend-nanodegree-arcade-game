@@ -7,6 +7,10 @@ $(document).ready(function () {
 	$('#gameStart').modal('show');
 });
 
+//caught modal random messages
+
+var caughtMessage = ['"Well, actually...." You are caught in a half hour lecture on your own field of expertise based on tweets about TIME articles without the chance do more than roll your eyes.', '"You need to read this book" your critic says, handing you your own book.' ];
+
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
 	this.x = x;
@@ -30,6 +34,7 @@ Enemy.prototype.update = function(dt) {
 	player.y + 50 > this.y){
 		this.speed = 0;
 		$("#caughtModal").modal('show');
+		document.getElementById("caughtText").innerHTML = "'You need to read this book,' your critic says, handing you your own book.";
 		player.starCount = 0;
 		setTimeout(() => {
 			player.x = 200;
@@ -144,8 +149,6 @@ enemyYLocation.forEach(function(locationY) {
 	enemy = new Enemy((Math.floor(Math.random() * 400)), locationY, 200);
 	allEnemies.push(enemy);
 });
-
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
