@@ -1,6 +1,6 @@
 //tutorial here https://www.youtube.com/watch?v=7PHhRrjgTDA and previous game created here https://www.khanacademy.org/computer-programming/dragon-and-knight/6160202051
 //note: KhanAcademy game credits also apply
-
+//some caught modal messages from here: https://hcolleen.tumblr.com/post/635790636018270208/hypdom-randomslasher-randomslasher-finnglas
 
 //onload modal
 $(document).ready(function () {
@@ -9,7 +9,7 @@ $(document).ready(function () {
 
 //caught modal random messages
 
-var caughtMessage = ['"Well, actually...." You are caught in a half hour lecture on your own field of expertise based on tweets about TIME articles without the chance do more than roll your eyes.', '"You need to read this book" your critic says, handing you your own book.' ];
+var caughtMessage = ['"Well, actually...." You are caught in a half hour lecture on your own field of expertise based on tweets about TIME articles without the chance do more than roll your eyes.', '"You need to read this book" your critic says, handing you your own book.', 'You are lectured for two hours on the intent of a paper that you wrote, completely misinterpreted.', '"The truth is ...." says your critic, citing a theory you wrote a paper thoroughly debunking.' ];
 
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
