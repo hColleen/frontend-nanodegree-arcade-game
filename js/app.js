@@ -12,17 +12,12 @@ $(document).ready(function () {
 var caughtMessage = ['"Well, actually...." You are caught in a half hour lecture on your own field of expertise based on tweets about TIME articles without the chance do more than roll your eyes.', '"You need to read this book" your critic says, handing you your own book.', 'You are lectured for two hours on the intent of a paper that you wrote, completely misinterpreted.', '"The truth is ...." says your critic, citing a theory you wrote a paper thoroughly debunking.' ];
 
 //generate random number and use to fill in caught modal message
+var message = '';
 function getRandomMessage() {
-	return caughtMessage[Math.floor(Math.random() * caughtMessage.length)];
+	message = caughtMessage[Math.floor(Math.random() * caughtMessage.length)];
 };
 
-function caughtMessageGet() {
-	for (var i = 0; i < caughtMessage.length; i++) {
-		var message = getRandomMessage();
-		$("#caughtText").innerHTML = message;
-		console.log(message);
-	};
-};
+$("#caughtText").innerHTML = message;
 
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
@@ -47,8 +42,9 @@ Enemy.prototype.update = function(dt) {
 	player.y + 50 > this.y){
 		this.speed = 0;
 		$("#caughtModal").modal('show');
-		caughtMessageGet();
 		player.starCount = 0;
+		getRandomMessage();
+		document.getElementById("caughtText").innerHTML = message;
 		setTimeout(() => {
 			player.x = 200;
 			player.y = 400;
